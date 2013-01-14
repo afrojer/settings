@@ -1,20 +1,27 @@
+[user]
+	name = Jeremy C. Andrus
+	email = jeremya@cs.columbia.edu
 [color]
 	ui = auto
+	diff = auto
+	status = auto
+	branch = auto
 [rebase]
 	autosquash = true
+[push]
+	default = matching
 [sendemail]
 	smtpencryption = tls
 	smtpserver = smtp.gmail.com
-	smtpuser = c.dall@virtualopensystems.com
+	smtpuser = jeremya@cs.columbia.edu
 	smtpserverport = 587
 	aliasesfile = ~/.settings/aliases
 	aliasfiletype = mutt
 [stgit]
-	sender = Christoffer Dall <c.dall@virtualopensystems.com>
+	sender = Jeremy C. Andrus <jeremya@cs.columbia.edu>
 	smtpserver = smtp.gmail.com:587
 	smtptls = yes
-	smtpuser = c.dall@virtualopensystems.com
-[push]
-	default = upstream
+	smtpuser = jeremya@cs.columbia.edu
 [core]
+	editor = vim
 	excludesfile = ~/.gitignore
