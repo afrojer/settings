@@ -1,62 +1,81 @@
 #!/bin/bash
+GITHUB_USER=afrojer
+
+function log() {
+	echo -e "\n======================================================================"
+	echo -e "$@\n"
+}
+
+echo -n "GitHub User: [$GITHUB_USER]: "
+read tmpname
+if [ ! -z "$tmpname" ]; then
+	GITHUB_USER="$tmpname"
+fi
 
 echo -n "Use writeable git remotes (requires appropriate public SSH key) (y/N): "
 read WRITABLE
 
 if [[ "$WRITABLE" == "y" || "$WRITABLE" == "Y" ]]; then
-	GITHUB_URL="git@github.com:chazy"
+	GITHUB_URL="git@github.com:${GITHUB_USER}"
 else
-	GITHUB_URL="git://github.com/chazy"
+	GITHUB_URL="git://github.com/${GITHUB_USER}"
 fi
 
-echo -e "Ensuring you have the required packages"
-echo -e "======================================="
-sudo apt-get install zsh tmux vim git curl cscope build-essential gcc-4.6-arm-linux-gnueabi minicom libncurses-dev
+log "Ensuring you have the required packages"
+SYSNAME=`uname -s`
+MAC_PORTS="coreutils binutils cmake fuse4x fuse4x-kext i386-elf-binutils sshfs htop tmux tmux-pasteboard git-core stgit curl cscope ncurses"
+LINUX_PKGS="zsh tmux vim git curl cscope build-essential gcc-4.6-arm-linux-gnueabi minicom libncurses-dev"
+if [ "${SYSNAME}" = "Darwin" ]; then
+	sudo port install ${MAC_PORTS}
+else
+	sudo apt-get install ${LINUX_PKGS}
+fi
 
-echo -e "\nTaking care of your vim config"
-echo -e "=============================="
+log "Taking care of your vim config..."
 
 if [[ ! -f ~/.vimrc ]]; then
-	cd $HOME
+	pushd $HOME
 	rm -f ~/.vimrc ~/.gvimrc ~/.vim
 	git clone $GITHUB_URL/vim-config.git .vim
-	cd .vim
+	pushd .vim
 	git submodule init
 	git submodule update
 	mkdir swap
-	cd $HOME
+	popd
 	ln -s .vim/vimrc .vimrc
 	ln -s .vim/gvimrc .gvimrc
+	popd
 else
-	echo -e "existing .vimrc, moving on...\n"
+	echo -e "existing ~/.vimrc, moving on."
 fi
 
-echo -e "\nTaking care of your tmux config"
-echo -e "==============================="
-if [[ ! -f ~/.tmux-config ]]; then
-	cd $HOME
+log "Taking care of your tmux config..."
+if [[ ! -f ~/.tmux.conf ]]; then
+	pushd $HOME
 	rm -rf ~/.tmux
 	git clone $GITHUB_URL/tmux-config.git .tmux
-	cd .tmux
+	pushd .tmux
 	make install
-	cd $HOME
+	popd
+	popd
 else
-	echo -e "existing .tmux-config, moving on...\n"
+	echo -e "existing ~/.tmux.conf, moving on."
 fi
 
-echo -e "\nTaking care of your tmux config"
-echo -e "===============================\n"
+log "Taking care of your ZSH config..."
 if [[ ! -f ~/.zshrc ]]; then
-	cd $HOME
+	pushd $HOME
 	rm -rf ~/.oh-my-zsh
 	git clone $GITHUB_URL/zsh-config.git .oh-my-zsh
-	cd .oh-my-zsh
-	cd $HOME
+	pushd .oh-my-zsh
+	git submodule init
+	git submodule update
+	popd
 	ln -s .oh-my-zsh/zshrc .zshrc
-	chsh -s `which zsh`
+	chsh -s `which -a zsh | grep -v aliased`
+	popd
 else
-	echo -e "existing .zshrc, moving on...\n"
+	echo -e "existing ~/.zshrc, moving on."
 fi
 
-
-echo "Done, happy coding!"
+log "Done, happy coding!"

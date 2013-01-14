@@ -1,4 +1,4 @@
-TARGETS = $(HOME)/.gitconfig $(HOME)/.gitignore $(HOME)/.bashrc
+TARGETS = $(HOME)/.gitconfig $(HOME)/.gitignore $(HOME)/.bashrc env
 SHELL = /bin/bash
 CWD = $(shell pwd)
 
@@ -13,6 +13,9 @@ endef
 
 all:
 	@echo type make install.
+
+env:
+	./configure-env.sh
 
 $(HOME)/.%: %
 	$(call check_file,$@)
