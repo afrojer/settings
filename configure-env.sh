@@ -21,14 +21,20 @@ else
 	GITHUB_URL="git://github.com/${GITHUB_USER}"
 fi
 
-log "Ensuring you have the required packages"
 SYSNAME=`uname -s`
 MAC_PORTS="coreutils binutils cmake fuse4x fuse4x-kext i386-elf-binutils sshfs htop tmux tmux-pasteboard git-core stgit curl cscope ncurses"
 LINUX_PKGS="zsh tmux vim git curl cscope build-essential gcc-4.6-arm-linux-gnueabi minicom libncurses-dev"
-if [ "${SYSNAME}" = "Darwin" ]; then
-	sudo port install ${MAC_PORTS}
+echo -n "Install Mac Ports / apt packages? (y|N): "
+read DOINST
+if [[ "$DOINST" == "y" || "$DOINST" == "Y" ]]; then
+	log "Ensuring you have the required packages"
+	if [ "${SYSNAME}" = "Darwin" ]; then
+		sudo port install ${MAC_PORTS}
+	else
+		sudo apt-get install ${LINUX_PKGS}
+	fi
 else
-	sudo apt-get install ${LINUX_PKGS}
+	log "Skipping MacPorts / apt package install."
 fi
 
 log "Taking care of your vim config..."
