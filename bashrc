@@ -22,7 +22,8 @@ fi
 # Custom PATH configuration
 ################################################################################
 # Default MacPorts paths
-EXTRA_PATH="/opt/local/bin:/opt/local/sbin"
+# EXTRA_PATH="/opt/local/bin:/opt/local/sbin"
+EXTRA_PATH="/usr/local/bin:/usr/local/sbin"
 # ~/bin
 EXTRA_PATH="${EXTRA_PATH}:${HOME}/bin"
 
