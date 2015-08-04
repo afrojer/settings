@@ -1,3 +1,6 @@
 tags
 tags-ja
 *.pyc
+BUILD
+*/*/*/BUILD
+cscope.*
