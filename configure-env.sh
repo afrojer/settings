@@ -44,9 +44,8 @@ if [[ ! -f ~/.vimrc ]]; then
 	rm -f ~/.vimrc ~/.gvimrc ~/.vim
 	git clone $GITHUB_URL/vim-config.git .vim
 	pushd .vim
-	git submodule init
-	git submodule update
 	mkdir swap
+	make install ME=afrojer
 	popd
 	ln -s .vim/vimrc .vimrc
 	ln -s .vim/gvimrc .gvimrc
