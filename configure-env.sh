@@ -1,5 +1,6 @@
 #!/bin/bash
-GITHUB_USER=afrojer
+VIMRC_ME=${1:-afrojer}
+GITHUB_USER=${2:-afrojer}
 
 function log() {
 	echo -e "\n======================================================================"
@@ -11,6 +12,13 @@ read tmpname
 if [ ! -z "$tmpname" ]; then
 	GITHUB_USER="$tmpname"
 fi
+
+echo -n "Vim RC config: [$VIMRC_ME]: "
+read tmpname
+if [ ! -z "$tmpname" ]; then
+	VIMRC_ME="$tmpname"
+fi
+
 
 echo -n "Use writeable git remotes (requires appropriate public SSH key) (y/N): "
 read WRITABLE
@@ -45,7 +53,7 @@ if [[ ! -f ~/.vimrc ]]; then
 	git clone $GITHUB_URL/vim-config.git .vim
 	pushd .vim
 	mkdir swap
-	make install ME=afrojer
+	make install ME=${VIMRC_ME}
 	popd
 	ln -s .vim/vimrc .vimrc
 	ln -s .vim/gvimrc .gvimrc
