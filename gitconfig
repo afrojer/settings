@@ -1,6 +1,6 @@
 [user]
-	name = Jeremy C. Andrus
-	email = jeremya@cs.columbia.edu
+	name = Jeremy Andrus
+	email = jeremy_andrus@apple.com
 [color]
 	ui = auto
 	diff = auto
@@ -9,7 +9,7 @@
 [rebase]
 	autosquash = true
 [push]
-	default = matching
+	default = simple
 [sendemail]
 	smtpencryption = tls
 	smtpserver = smtp.gmail.com
