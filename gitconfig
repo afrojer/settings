@@ -22,6 +22,11 @@
 	smtpserver = smtp.gmail.com:587
 	smtptls = yes
 	smtpuser = jeremya@cs.columbia.edu
+[branch]
+	autosetuprebase = always
+	autosetupmerge = always
+[rebase]
+	missingCommitsCheck = error
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
