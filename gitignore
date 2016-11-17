@@ -1,3 +1,7 @@
 tags
 tags-ja
 *.pyc
+cscope.*
+BUILD
+*/*/*/BUILD
+libsyscall.cpgz
