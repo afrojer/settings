@@ -8,8 +8,6 @@
 	branch = auto
 [rebase]
 	autosquash = true
-[push]
-	default = matching
 [sendemail]
 	smtpencryption = tls
 	smtpserver = smtp.gmail.com
@@ -25,3 +23,27 @@
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
+[alias]
+	#last-branch = !CURBRANCH=$(git rev-parse --abbrev-ref HEAD) && LASTBRANCH=$(git reflog | grep checkout | grep -v \"}: \\(rebase\\|checkout: moving from [0-9a-f]\\{40\\}\\|checkout: moving from $CURBRANCH\\)\" | head -1 | sed -e 's/.*from \\([^ ]*\\) to .*/\\1/') && echo \"CB=$CURBRANCH, LB=$LASTBRANCH\" && git checkout $LASTBRANCH
+	last-branch = !CURBRANCH=$( [ \"`git rev-parse --abbrev-ref HEAD`\" = \"HEAD\" ] && git rev-parse HEAD || git rev-parse --abbrev-ref HEAD) && LASTBRANCH=$(git reflog | grep \": checkout: moving.* to $CURBRANCH\" | head -1 | sed -e 's/.*from \\([^ ]*\\) to .*/\\1/') && [ ! -z \"$LASTBRANCH\" ] && git checkout $LASTBRANCH || echo \"Can't find last branch. current=$CURBRANCH\"
+	#
+	# aliases taken from : https://git.wiki.kernel.org/index.php/Aliases
+	#
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	alias = "!sh -c '[ $# = 2 ] && git config --global alias.\"$1\" \"$2\" && exit 0 || echo \"usage: git alias <new alias> <original command>\" >&2 && exit 1' -"
+	aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
+	whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+	changes=diff --name-status -r
+	diffstat=diff --stat -r
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	df = diff
+	dc = diff --cached
+	who = shortlog -s --
+[pager]
+	blame = less -S
+[push]
+	default = simple
