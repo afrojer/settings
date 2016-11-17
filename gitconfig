@@ -1,6 +1,6 @@
 [user]
 	name = Jeremy C. Andrus
-	email = jeremya@cs.columbia.edu
+	email = jchristian.andrus@gmail.com
 [color]
 	ui = auto
 	diff = auto
@@ -8,6 +8,8 @@
 	branch = auto
 [rebase]
 	autosquash = true
+[push]
+	default = simple
 [sendemail]
 	smtpencryption = tls
 	smtpserver = smtp.gmail.com
@@ -20,6 +22,11 @@
 	smtpserver = smtp.gmail.com:587
 	smtptls = yes
 	smtpuser = jeremya@cs.columbia.edu
+[branch]
+	autosetuprebase = always
+	autosetupmerge = always
+[rebase]
+	missingCommitsCheck = error
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
@@ -45,5 +52,5 @@
 	who = shortlog -s --
 [pager]
 	blame = less -S
-[push]
-	default = simple
+[url "ssh://git@stash.sd.apple.com/"]
+	insteadOf = stash://
