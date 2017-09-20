@@ -27,6 +27,8 @@
 	autosetupmerge = always
 [rebase]
 	missingCommitsCheck = error
+[web]
+	browser = open
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
