@@ -56,3 +56,5 @@
 	blame = less -S
 [url "ssh://git@stash.sd.apple.com/"]
 	insteadOf = stash://
+[url "ssh://git@gitlab.sd.apple.com/"]
+	insteadOf = gitlab://
