@@ -13,15 +13,15 @@
 [sendemail]
 	smtpencryption = tls
 	smtpserver = smtp.gmail.com
-	smtpuser = jeremya@cs.columbia.edu
+	smtpuser = jchristian.andrus@gmail.com
 	smtpserverport = 587
 	aliasesfile = ~/.settings/aliases
 	aliasfiletype = mutt
 [stgit]
-	sender = Jeremy C. Andrus <jeremya@cs.columbia.edu>
+	sender = Jeremy C. Andrus <jchristian.andrus@gmail.com>
 	smtpserver = smtp.gmail.com:587
 	smtptls = yes
-	smtpuser = jeremya@cs.columbia.edu
+	smtpuser = jchristian.andrus@gmail.com
 [branch]
 	autosetuprebase = always
 	autosetupmerge = always
@@ -58,3 +58,5 @@
 	insteadOf = stash://
 [url "ssh://git@gitlab.sd.apple.com/"]
 	insteadOf = gitlab://
+[pull]
+	ff = only
