@@ -62,3 +62,5 @@
 	insteadOf = gitlab://
 [pull]
 	ff = only
+[blame]
+	ignoreRevsFile = .git-blame-ignore-revs
