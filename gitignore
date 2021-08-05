@@ -5,3 +5,4 @@ cscope.*
 BUILD
 */*/*/BUILD
 libsyscall.cpgz
+.cache/clangd
