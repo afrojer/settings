@@ -34,6 +34,8 @@
 	excludesfile = ~/.gitignore
 [init]
 	defaultBranch = main
+[advice]
+	detachedHead = false
 [alias]
 	#last-branch = !CURBRANCH=$(git rev-parse --abbrev-ref HEAD) && LASTBRANCH=$(git reflog | grep checkout | grep -v \"}: \\(rebase\\|checkout: moving from [0-9a-f]\\{40\\}\\|checkout: moving from $CURBRANCH\\)\" | head -1 | sed -e 's/.*from \\([^ ]*\\) to .*/\\1/') && echo \"CB=$CURBRANCH, LB=$LASTBRANCH\" && git checkout $LASTBRANCH
 	last-branch = !CURBRANCH=$( [ \"`git rev-parse --abbrev-ref HEAD`\" = \"HEAD\" ] && git rev-parse HEAD || git rev-parse --abbrev-ref HEAD) && LASTBRANCH=$(git reflog | grep \": checkout: moving.* to $CURBRANCH\" | head -1 | sed -e 's/.*from \\([^ ]*\\) to .*/\\1/') && [ ! -z \"$LASTBRANCH\" ] && git checkout $LASTBRANCH || echo \"Can't find last branch. current=$CURBRANCH\"
