@@ -1,6 +1,6 @@
 [user]
 	name = Jeremy C. Andrus
-	email = jchristian.andrus@gmail.com
+	email = jeremy_andrus@apple.com
 [color]
 	ui = auto
 	diff = auto
@@ -66,6 +66,8 @@
 	ff = only
 [blame]
 	ignoreRevsFile = .git-blame-ignore-revs
+[url "git@github.pie.apple.com:"]
+	insteadOf = https://github.pie.apple.com
 [commit]
 	gpgsign = true
 [gpg]

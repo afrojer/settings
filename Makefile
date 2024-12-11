@@ -1,5 +1,5 @@
 TARGETS = $(HOME)/.gitconfig $(HOME)/.gitignore $(HOME)/.bashrc env
-SHELL = /bin/bash
+SHELL = /bin/zsh
 CWD = $(shell pwd)
 
 define check_file
